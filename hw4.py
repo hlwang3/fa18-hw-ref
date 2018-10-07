@@ -13,7 +13,28 @@ most_common_char
 Given an input string s, return the most common character in s.
 """
 def most_common_char(s):
-	pass
+    if (s is None):
+        return None
+    if (len(s) == 0):
+        return None
+
+    # create array to keep count of the number of each character (total ASCII = 256)
+    charCount = [0] * 257
+
+    max = -1
+    c = ''
+
+    # loop through string and tally frequency of each character
+    for current in s:
+        charCount[ord(current)] += 1;
+
+    # loop again to see which char has greatest frequency
+    for current in s:
+        if charCount[ord(current)]:
+            max = charCount[ord(current)]
+            c = current
+
+    return current
 
 
 """
@@ -25,19 +46,52 @@ If there is no such prefix, return None.
 Your function should recognize letters in both cases, i.e. "qwertyuiopASDFGHJKLzxcvbnm" is a valid alphabet.
 
 Example 1:
-	Argument:
-		"qwertyuiopASDFGHJKLzxcvbnm insensitive paella"
-	Return:
-		"qwertyuiopASDFGHJKLzxcvbnm"
+    Argument:
+        "qwertyuiopASDFGHJKLzxcvbnm insensitive paella"
+    Return:
+        "qwertyuiopASDFGHJKLzxcvbnm"
 
 Example 2:
-	Argument:
-		"aardvarks are cool!"
-	Return:
-		None
+    Argument:
+        "aardvarks are cool!"
+    Return:
+        None
 """
 def alphabet_finder(s):
-	pass
+    if (s is None):
+        return None
+    if (len(s) == 0):
+        return None
+
+    s = s.lower();
+    charInAlphabet = [0]*26
+    validPrefix = ""
+
+    for i in len(s):
+        if s[i] != " " and isAlphabet(s[i]):
+            charInAlphabet[ord(s[i]) - 97] += 1
+            isDone = True
+            for j in range(26):
+                if charInAlphabet[j] == 0:
+                    isDone = False
+                    break
+            if isDone == True:
+                if i == len(s) - 1:
+                    return s
+                else:
+                    return s[:i+1]
+    return None
+
+
+def isAlphabet(c):
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    isAlphabet = False
+    for i in len(alphabet):
+        if alphabet[i] == c:
+            isAlphabet = True
+            break
+    return isAlphabet
+
 
 
 """
@@ -50,13 +104,13 @@ and b must be the largest value possible for the array.
 If multiple such subarrays exist (i.e. same b, different a), use the lowest value of a.
 
 Example:
-	Argument:
-		[1, 2, 3, 1, 4, 5, 6]
-	Return:
-		[1, 6]
+    Argument:
+        [1, 2, 3, 1, 4, 5, 6]
+    Return:
+        [1, 6]
 """
 def longest_unique_subarray(arr):
-	pass
+    pass
 
 
 """
@@ -76,30 +130,30 @@ Ungraded food for thought:
 Ideally, your method should also work on integer arrays without any modification.
 
 Example 1:
-	Argument:
-		"abcbabcdcdda"
-		There are 3 a's, 3 b's, 3 c's, and 3 d's. That means it is a very likable string!
-	Return:
-		True
+    Argument:
+        "abcbabcdcdda"
+        There are 3 a's, 3 b's, 3 c's, and 3 d's. That means it is a very likable string!
+    Return:
+        True
 
 Example 2:
-	Argument:
-		"aaabbbcccddde"
-		There are 3 a's, 3 b's, 3 c's, and 3 d's. We have 1 e, which we can remove.
-	Return:
-		True
+    Argument:
+        "aaabbbcccddde"
+        There are 3 a's, 3 b's, 3 c's, and 3 d's. We have 1 e, which we can remove.
+    Return:
+        True
 
 Example 3:
-	Argument:
-		"aaabbbcccdddeeffgg"
-		This string is similar to the other ones, except with 2 e's, f's and g's at the end.
-		To make this string likable, we need to remove the 2 e's, f's, and g's or we can remove
-		one a, b, c, and d. However all of these require more than one removal, so it becomes invalid.
-	Return:
-		False
+    Argument:
+        "aaabbbcccdddeeffgg"
+        This string is similar to the other ones, except with 2 e's, f's and g's at the end.
+        To make this string likable, we need to remove the 2 e's, f's, and g's or we can remove
+        one a, b, c, and d. However all of these require more than one removal, so it becomes invalid.
+    Return:
+        False
 """
 def string_my_one_true_love(s):
-	pass
+    pass
 
 
 """
@@ -111,13 +165,13 @@ Given that data, return the year where the most people represented in the list w
 If there are multiple such years, return the earliest year.
 
 Example:
-	Argument:
-		[[1920, 80], [1940, 22], [1961, 10]]
-	Return:
-		1961
+    Argument:
+        [[1920, 80], [1940, 22], [1961, 10]]
+    Return:
+        1961
 """
 def alive_people(data):
-	pass
+    pass
 
 
 """
@@ -131,16 +185,16 @@ Each inner list should be a triplet as we defined above.
 We don't care about the order of triplets, nor the order of elements in each triplet.
 
 Example:
-	Arguments:
-		[-1, 0, 1, 2, -1, -4], 0
-	Return:
-		[
-			[-1, 0, 1],
-			[-1, -1, 2]
-		]
+    Arguments:
+        [-1, 0, 1, 2, -1, -4], 0
+    Return:
+        [
+            [-1, 0, 1],
+            [-1, -1, 2]
+        ]
 """
 def three_sum(arr, t):
-	pass
+    pass
 
 
 """
@@ -150,19 +204,19 @@ Given an input integer n > 0, return the number of happy integers between 1 and 
 https://en.wikipedia.org/wiki/Happy_number
 
 Example 1:
-	Argument:
-		8
-		The happy numbers between 1 and 8 are 1 and 7 (7 -> 49 -> 97 -> 130 -> 10 -> 1)
-	Return:
-		2468 // 1234 (i.e., 2)
+    Argument:
+        8
+        The happy numbers between 1 and 8 are 1 and 7 (7 -> 49 -> 97 -> 130 -> 10 -> 1)
+    Return:
+        2468 // 1234 (i.e., 2)
 Example 2:
-	Argument:
-		15
-	Return:
-		4294967296 ** (1 / 16) (i.e., 4)
+    Argument:
+        15
+    Return:
+        4294967296 ** (1 / 16) (i.e., 4)
 """
 def happy_numbers(n):
-	pass
+    pass
 
 
 """
@@ -180,18 +234,18 @@ Ungraded food for thought:
 Think about how to generalize your solution to any arbitrary target sum.
 
 Example 1:
-	Argument:
-		[0, 1, 2, 3, 4, 5]
-		Clearly, the first element by itself forms a subarray with sum == 0.
-	Return:
-		[0, 1]
+    Argument:
+        [0, 1, 2, 3, 4, 5]
+        Clearly, the first element by itself forms a subarray with sum == 0.
+    Return:
+        [0, 1]
 
 Example 2:
-	Argument:
-		[10, 20, -20, 3, 21, 2, -6]
-		In this case, arr[1:3] = [20, -20], so there is a zero sum subarray.
-	Return:
-		[1, 2]
+    Argument:
+        [10, 20, -20, 3, 21, 2, -6]
+        In this case, arr[1:3] = [20, -20], so there is a zero sum subarray.
+    Return:
+        [1, 2]
 """
 def zero_sum_subarray(arr):
     pass 
