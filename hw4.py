@@ -153,7 +153,43 @@ Example 3:
         False
 """
 def string_my_one_true_love(s):
-    pass
+    if (s is None):
+        return False
+    if (len(s) == 0):
+        return False
+
+    # create array to keep count of the number of each character (total ASCII = 256)
+    charCount = [0] * 257
+
+
+    # loop through string and tally frequency of each character
+    for current in s:
+        charCount[ord(current)] += 1;
+
+    frequency = [0] * 257
+
+    for i in len(charCount):
+        frequency[charCount[i]] += 1;
+
+    mostPopularFreq = 0;
+
+    for i in len(frequency):
+        if frequency[i] > mostPopularFreq:
+            mostPopularFreq = frequency[i]
+
+    numOfChangesNeeded = 0;
+
+    for i in len(charCount):
+        if charCount[i] != 0 and charCount[i] != mostPopularFreq:
+            if charCount[i] - mostPopularFreq > 1 or charCount[i] - mostPopularFreq < -1:
+                return False
+            elif charCount[i] - mostPopularFreq == 1 or charCount[i] - mostPopularFreq == -1:
+                if numOfChangesNeeded == 1:
+                    return False
+                else:
+                    numOfChangesNeeded += 1
+
+    return True
 
 
 """
